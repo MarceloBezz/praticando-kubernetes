@@ -8,3 +8,4 @@ temp/
 db_data/
 database/
 mysql
+secrets.yaml
