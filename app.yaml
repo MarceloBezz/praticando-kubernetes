@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: vollmed-api
-        image: marcelobezz07/vollmed-api:1
+        image: marcelobezz07/vollmed-api:2
         ports:
         - containerPort: 3000
         env:
@@ -30,6 +30,11 @@ spec:
             configMapKeyRef:
               name: dados
               key: DB_HOST
+        - name: SERVER_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: dados
+              key: SERVER_PORT
         - name: DB_USER
           valueFrom:
             secretKeyRef:
@@ -40,3 +45,9 @@ spec:
             secretKeyRef:
               name: senhas
               key: DB_PASSWORD
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 3

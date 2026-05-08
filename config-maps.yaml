@@ -5,3 +5,4 @@ metadata:
 data:
   DB_DATABASE: "testemed"
   DB_HOST: "mysql"
+  SERVER_PORT: "3000"

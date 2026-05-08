@@ -35,6 +35,13 @@ app.use(cors(corsOpts))
 
 app.use(express.json())
 
+// Healthcheck para Kubernetes
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok'
+  })
+})
+
 AppDataSource.initialize()
   .then(() => {
     console.log('App Data Source inicializado')
